@@ -43,32 +43,40 @@ module.exports = function(app){
    //PUT (Update)
   updateSerieTV = function (req, res){
     SerieTV.findById(req.params.id, function(err, serietv){
-      serietv.nombre = req.body.nombre;
-      serietv.precio = req.body.precio;
-      serietv.descripcion = req.body.descripcion;
-      serietv.foto = req.body.foto;
-      serietv.disponibilidad = req.body.disponibilidad;
-      serietv.nombreOpinion = req.body.nombreOpinion;
-      serietv.opinion = req.body.opinion;
-      serietv.save(function(err){
-        if(!err) console.log('SerieTV Actualizada!');
-        else console.log ('ERROR:' +err);
+      if (serietv)  {
+        serietv.nombre = req.body.nombre;
+        serietv.precio = req.body.precio;
+        serietv.descripcion = req.body.descripcion;
+        serietv.foto = req.body.foto;
+        serietv.disponibilidad = req.body.disponibilidad;
+        serietv.nombreOpinion = req.body.nombreOpinion;
+        serietv.opinion = req.body.opinion;
+        serietv.save;
+        console.log('SerieTV Actualizada!');
+      }
+        else {
+          req.connection.destroy();
+          console.log ('ERROR, no existe la serie que quiere actualizar.');
+        }
       });
-    })
-  };
+    };
 
   // DELETE
 
   deleteSerieTV = function (req, res){
     SerieTV.findById(req.params.id, function(err, serietv){
-      serietv.remove(function(err){
-        if (!err) console.log('SerieTV Borrada');
-        else console.log ('ERROR:' +err);
-      })
+      if (serietv) {
+        serietv.remove;
+        console.log ('SerieTV Borrada.');
+      }
+      else {
+        req.connection.destroy();
+        console.log ('ERROR, no existe la serie que quiere borrar.');
+      }
     });
   }
 
-//API ROUTES
+  //API ROUTES
 
 app.get ('/seriestv', findAllSeriesTV);
 app.get ('/seriestv/:id', findByID);
