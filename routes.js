@@ -43,10 +43,13 @@ module.exports = function(app){
    //PUT (Update)
   updateSerieTV = function (req, res){
     SerieTV.findById(req.params.id, function(err, serietv){
-      serietv.titulo = req.body.titulo;
-      serietv.temporadas = req.body.temporadas;
-      serietv.pais = req.body.pais;
-      serietv.genero = req.body.genero;
+      serietv.nombre = req.body.nombre;
+      serietv.precio = req.body.precio;
+      serietv.descripcion = req.body.descripcion;
+      serietv.foto = req.body.foto;
+      serietv.disponibilidad = req.body.disponibilidad;
+      serietv.nombreOpinion = req.body.nombreOpinion;
+      serietv.opinion = req.body.opinion;
       serietv.save(function(err){
         if(!err) console.log('SerieTV Actualizada!');
         else console.log ('ERROR:' +err);
