@@ -1,28 +1,34 @@
 module.exports = function(app){
-  var SerieTV = require ('./serietv');
+  var ProductoSigmaTienda = require ('./sigmaProducto');
 
   // GET
-  findAllSeriesTV = function (req, res){
-    SerieTV.find (function(err,seriestv) {
-      if (!err) res.send(seriestv);
-      else console.log('ERROR:' +err);
+  findAllUCOSigmaTienda = function (req, res){
+    ProductoSigmaTienda.find (function(err,UCOSigmaTienda) {
+      if (!err) res.send(UCOSigmaTienda);
+      else {
+        console.log('ERROR:' +err);
+        req.connection.destroy();
+      }
     });
   };
 
   // GET
   findByID = function(req, res){
-    SerieTV.findById(req.params.id, function(err,serietv){
-      if(!err) res.send(serietv);
-      else console.log('ERROR:' +err);
+    ProductoSigmaTienda.findById(req.params.id, function(err,sigmaProducto){
+      if(!err) res.send(sigmaProducto);
+      else {
+        console.log('ERROR:' +err);
+        req.connection.destroy();
+      }
     });
   };
 
   // POST
-  addSerieTV = function (req, res) {
+  addProductoSigmaTienda = function (req, res) {
     console.log ('POST');
     console.log(req.body);
 
-    var serietv = new SerieTV({
+    var sigmaProducto = new ProductoSigmaTienda({
       nombre: req.body.nombre,
       precio: req.body.precio,
       descripcion: req.body.descripcion,
@@ -32,55 +38,55 @@ module.exports = function(app){
       opinion: req.body.opinion
     });
 
-    serietv.save(function(err){
-      if(!err) console.log ('SerieTV Guardada!');
+    sigmaProducto.save(function(err){
+      if(!err) console.log ('¡Producto Guardado!');
       else console.log('ERROR:' +err);
     });
 
-    res.send(serietv);
+    res.send(sigmaProducto);
   };
 
    //PUT (Update)
-  updateSerieTV = function (req, res){
-    SerieTV.findById(req.params.id, function(err, serietv){
-      if (serietv)  {
-        serietv.nombre = req.body.nombre;
-        serietv.precio = req.body.precio;
-        serietv.descripcion = req.body.descripcion;
-        serietv.foto = req.body.foto;
-        serietv.disponibilidad = req.body.disponibilidad;
-        serietv.nombreOpinion = req.body.nombreOpinion;
-        serietv.opinion = req.body.opinion;
-        serietv.save;
-        console.log('SerieTV Actualizada!');
+  updateProductoSigmaTienda = function (req, res){
+    ProductoSigmaTienda.findById(req.params.id, function(err, sigmaProducto){
+      if (sigmaProducto)  {
+        sigmaProducto.nombre = req.body.nombre;
+        sigmaProducto.precio = req.body.precio;
+        sigmaProducto.descripcion = req.body.descripcion;
+        sigmaProducto.foto = req.body.foto;
+        sigmaProducto.disponibilidad = req.body.disponibilidad;
+        sigmaProducto.nombreOpinion = req.body.nombreOpinion;
+        sigmaProducto.opinion = req.body.opinion;
+        sigmaProducto.save;
+        console.log('¡Producto actualizado!');
       }
         else {
           req.connection.destroy();
-          console.log ('ERROR, no existe la serie que quiere actualizar.');
+          console.log ('¡ERROR, no existe el producto que quiere actualizar!');
         }
       });
     };
 
   // DELETE
 
-  deleteSerieTV = function (req, res){
-    SerieTV.findById(req.params.id, function(err, serietv){
-      if (serietv) {
-        serietv.remove;
-        console.log ('SerieTV Borrada.');
+  deleteProductoSigmaTienda = function (req, res){
+    ProductoSigmaTienda.findById(req.params.id, function(err, sigmaProducto){
+      if (sigmaProducto) {
+        sigmaProducto.remove();
+        console.log ('¡Producto borrado!');
       }
       else {
-        req.connection.destroy();
-        console.log ('ERROR, no existe la serie que quiere borrar.');
+        console.log ('¡ERROR, no existe el producto que quiere borrar!');
       }
+    req.connection.destroy();
     });
   }
 
   //API ROUTES
 
-app.get ('/seriestv', findAllSeriesTV);
-app.get ('/seriestv/:id', findByID);
-app.post ('/seriestv', addSerieTV);
-app.put('/seriestv/:id', updateSerieTV);
-app.delete('/seriestv/:id', deleteSerieTV);
+app.get ('/UCOSigmaTienda', findAllUCOSigmaTienda);
+app.get ('/UCOSigmaTienda/:id', findByID);
+app.post ('/UCOSigmaTienda', addProductoSigmaTienda);
+app.put('/UCOSigmaTienda/:id', updateProductoSigmaTienda);
+app.delete('/UCOSigmaTienda/:id', deleteProductoSigmaTienda);
 }

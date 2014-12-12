@@ -7,7 +7,7 @@ bodyParser  = require("body-parser"),
 methodOverride = require("method-override");
 mongoose = require('mongoose');
 
-mongoose.connect ('mongodb://localhost/seriestv', function(err, rest){
+mongoose.connect ('mongodb://localhost/UCOSigmaTienda', function(err, rest){
   if(err) console.log('ERROR: Conectando a la BD: ' + err);
   else console.log('Conexión a la BD realizada.');
 });
@@ -20,7 +20,7 @@ app.use(methodOverride());
 
 
 app.get('/', function(req, res){
-  res.send('Víctor guapo <3');
+  res.send('Se conecta correctamente a localhost en puerto 500 ;)');
 });
 
 require('./routes')(app);
