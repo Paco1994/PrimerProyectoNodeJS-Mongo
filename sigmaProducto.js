@@ -9,7 +9,7 @@ var sigmaProducto = new Schema({
     disponibilidad: String,
     nombreOpinion: String,
     opinion: String,
-    Valoracion: Number
+    valoracion: Number
 });
 
 module.exports = mongoose.model ('ProductoSigmaTienda', sigmaProducto)
