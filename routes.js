@@ -63,7 +63,7 @@ module.exports = function(app){
         sigmaProducto.nombreOpinion = req.body.nombreOpinion;
         sigmaProducto.opinion = req.body.opinion;
         sigma.Producto.valoracion = req.body.valoracion;
-        sigmaProducto.save;
+        sigma.Producto.save;
         console.log('¡Producto actualizado!');
       }
     });
