@@ -51,8 +51,8 @@ module.exports = function(app){
   updateProductoSigmaTienda = function (req, res){
     ProductoSigmaTienda.findById(req.params.id, function(err, sigmaProducto){
       if (!sigmaProducto)  {
-        req.connection.destroy();
         console.log ('¡ERROR, no existe el producto que quiere actualizar!');
+        req.connection.destroy();
       }
       else {
         sigmaProducto.nombre = req.body.nombre;
@@ -73,12 +73,12 @@ module.exports = function(app){
 
   deleteProductoSigmaTienda = function (req, res){
     ProductoSigmaTienda.findById(req.params.id, function(err, sigmaProducto){
-      if (sigmaProducto) {
-        sigmaProducto.remove();
-        console.log ('¡Producto borrado!');
+      if (!sigmaProducto) {
+        console.log ('¡ERROR, no existe el producto que quiere borrar!');
       }
       else {
-        console.log ('¡ERROR, no existe el producto que quiere borrar!');
+        sigmaProducto.remove();
+        console.log ('¡Producto borrado!');
       }
     req.connection.destroy();
     });
