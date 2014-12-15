@@ -50,7 +50,7 @@ module.exports = function(app){
    //PUT (Update)
   updateProductoSigmaTienda = function (req, res){
     ProductoSigmaTienda.findById(req.params.id, function(err, sigmaProducto){
-      if (!err) {
+      if (err) {
         console.log ('¡ERROR, no existe el producto que quiere actualizar!');
         req.connection.destroy();
       }
