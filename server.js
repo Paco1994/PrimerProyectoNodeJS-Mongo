@@ -26,10 +26,10 @@ app.use(function(req, res, next) {
 
 
 app.get('/', function(req, res){
-  res.send('Se conecta correctamente a localhost en puerto 500 ;)');
+  res.send('Se conecta correctamente a localhost en puerto 3000 ;)');
 });
 
 require('./routes')(app);
 
-app.listen (80);
-console.log('Servidor Express escuchando en el puerto 80');
+app.listen (3000);
+console.log('Servidor Express escuchando en el puerto 3000');

@@ -35,7 +35,8 @@ module.exports = function(app){
       foto:req.body.foto,
       disponibilidad: req.body.disponibilidad,
       nombreOpinion: req.body.nombreOpinion,
-      opinion: req.body.opinion
+      opinion: req.body.opinion,
+      valoracion: req.body.valoracion
     });
 
     sigmaProducto.save(function(err){

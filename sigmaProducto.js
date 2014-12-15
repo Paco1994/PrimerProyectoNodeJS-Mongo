@@ -8,7 +8,8 @@ var sigmaProducto = new Schema({
     foto: String,
     disponibilidad: String,
     nombreOpinion: String,
-    opinion: String
+    opinion: String,
+    Valoracion: Number
 });
 
 module.exports = mongoose.model ('ProductoSigmaTienda', sigmaProducto)
