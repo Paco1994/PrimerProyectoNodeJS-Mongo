@@ -62,8 +62,8 @@ module.exports = function(app){
         sigmaProducto.disponibilidad = req.body.disponibilidad;
         sigmaProducto.nombreOpinion = req.body.nombreOpinion;
         sigmaProducto.opinion = req.body.opinion;
-        sigma.Producto.valoracion = req.body.valoracion;
-        sigma.Producto.save;
+        sigmaProducto.valoracion = req.body.valoracion;
+        sigmaProducto.save;
         console.log('¡Producto actualizado!');
       }
     });
