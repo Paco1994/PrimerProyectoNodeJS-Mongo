@@ -52,7 +52,6 @@ module.exports = function(app){
     ProductoSigmaTienda.findById(req.params.id, function(err, sigmaProducto){
       if (err) {
         console.log ('¡ERROR, no existe el producto que quiere actualizar!');
-        req.connection.destroy();
       }
       else {
         sigmaProducto.nombre = req.body.nombre;
@@ -66,6 +65,7 @@ module.exports = function(app){
         sigmaProducto.save;
         console.log('¡Producto actualizado!');
       }
+      req.connection.destroy();
     });
   };
 
