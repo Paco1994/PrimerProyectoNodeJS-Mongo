@@ -50,7 +50,11 @@ module.exports = function(app){
    //PUT (Update)
   updateProductoSigmaTienda = function (req, res){
     ProductoSigmaTienda.findById(req.params.id, function(err, sigmaProducto){
-      if (sigmaProducto)  {
+      if (!sigmaProducto)  {
+        req.connection.destroy();
+        console.log ('¡ERROR, no existe el producto que quiere actualizar!');
+      }
+      else {
         sigmaProducto.nombre = req.body.nombre;
         sigmaProducto.precio = req.body.precio;
         sigmaProducto.descripcion = req.body.descripcion;
@@ -62,12 +66,8 @@ module.exports = function(app){
         sigmaProducto.save;
         console.log('¡Producto actualizado!');
       }
-        else {
-          req.connection.destroy();
-          console.log ('¡ERROR, no existe el producto que quiere actualizar!');
-        }
-      });
-    };
+    });
+  };
 
   // DELETE
 
